@@ -1,0 +1,117 @@
+extends layout
+
+block content
+  
+  div(class="row")
+    div(class="col s12")
+      ul(class="tabs tabs-fixed-width")
+        li(class="tab col s3")
+          a(class="active" href="#test1") Categoria
+          
+        li(class="tab col s3")
+          a( href="#test2") Cursos
+        
+    div(id="test1" class="col s12")
+      div(class="row")
+        div(class="col s4")
+          h2 Agregar Categoria
+          table
+              thead
+                tr
+                    th Id
+                    th Nombre        
+
+              tbody(data-bind="foreach: categorias")
+                
+                tr
+                  td(data-bind="text: idCategoria") 
+                  td(data-bind="text: nombre")
+                    
+          div(class="input-field col s6")
+            form(class="form-inline" data-bind="submit: agregarCategoria")
+              input(data-bind="value: categoriaNueva.nombre" placeholder="Placeholder" id="first_name" type="text" class="validate")
+              label(for="first_name") First Name     
+              
+              button(class="btn") REGISTRAR
+              
+    div(id="test2" class="col s12")
+      div(class="row")
+        div(class="col s4")
+          h2 Agregar Contacto
+          table
+              thead
+                tr
+                    th Id
+                    th Nombre
+                    th Apellido
+                    th Direccion   
+                    th Telefono
+                    th Correo           
+                    th Categoria
+                    
+              tbody(data-bind="foreach: contactos")
+                
+                tr
+                  td(data-bind="text: idContacto") 
+                  td(data-bind="text: nombre")
+                  td(data-bind="text: apellido") 
+                  td(data-bind="text: direccion")
+                  td(data-bind="text: telefono") 
+                  td(data-bind="text: correo")
+                  td(data-bind="text: idCategoria.nombre")
+                    
+                  td
+                    div(class="btn-group")
+                      button(class="btn" data-bind="click: $root.cargarContacto" onclick="UsuarioCliente.mostrarForm()")
+                        
+                    
+          div(class="input-field col s6" id="tablaUsuario")
+            form(class="form-inline" data-bind="submit: agregarContacto")
+              input(data-bind="value: contactoNuevo.nombre" placeholder="Placeholder" id="first_name" type="text" class="validate")
+              label(for="first_name") First Name     
+
+              input(data-bind="value: contactoNuevo.apellido" placeholder="apellido" id="apellido_input" type="text" class="validate")
+              label(for="apellido_input") Apellido 
+              
+              input(data-bind="value: contactoNuevo.direccion" placeholder="direccion" id="direccion_input" type="text" class="validate")
+              label(for="direccion_input") Direccion    
+              
+              input(data-bind="value: contactoNuevo.telefono" placeholder="telefono" id="telefono_input" type="text" class="validate")
+              label(for="telefono_input") Telefono
+              
+              input(data-bind="value: contactoNuevo.correo" placeholder="correo" id="correo_input" type="text" class="validate")
+              label(for="correo_input") Correo   
+              
+              input(data-bind="value: contactoNuevo.idCategoria" placeholder="idCategoria" id="idCategoria_input" type="text" class="validate")
+              label(for="idCategoria_input") idCategoria
+              
+              button(class="btn") REGISTRAR
+            
+          div(class="input-field col s6" data-bind="if: contactoCargado" id="formularioUsuario")
+            form(class="form-inline" data-bind="submit: editar")
+              input(data-bind="value: contactoCargado().idContacto" placeholder="Placeholder" id="first_name" type="text" class="validate")
+              label(for="first_name") ID    
+              
+              input(data-bind="value: contactoCargado().nombre" placeholder="Placeholder" id="first_name" type="text" class="validate")
+              label(for="first_name") First Name     
+
+              input(data-bind="value: contactoCargado().apellido" placeholder="apellido" id="apellido_input" type="text" class="validate")
+              label(for="apellido_input") Apellido 
+              
+              input(data-bind="value: contactoCargado().direccion" placeholder="direccion" id="direccion_input" type="text" class="validate")
+              label(for="direccion_input") Direccion    
+              
+              input(data-bind="value: contactoCargado().telefono" placeholder="telefono" id="telefono_input" type="text" class="validate")
+              label(for="telefono_input") Telefono
+              
+              input(data-bind="value: contactoCargado().correo" placeholder="correo" id="correo_input" type="text" class="validate")
+              label(for="correo_input") Correo   
+              
+              input(data-bind="value: contactoCargado().idCategoria" placeholder="idCategoria" id="idCategoria_input" type="text" class="validate")
+              label(for="idCategoria_input") idCategoria
+
+              
+              button(class="btn" onclick="EditTabla.mostrarForm()" type="submit") REGISTRAR
+    
+    
+    
